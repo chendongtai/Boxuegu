@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //跳转到找回密码界面
+                Intent intent = new Intent(LoginActivity.this,FindPswActivity.class);
+                startActivity(intent);
             }
         });
         //登录按钮的点击事件
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private String readPsw(String userName){
         SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE);
-        return sp.getString("userName","");
+        return sp.getString(userName,"");
     }
     /**
      * 保存登录状态和登录用户名到SharedPreferences中

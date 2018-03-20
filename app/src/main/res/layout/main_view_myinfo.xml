@@ -19,7 +19,6 @@
             android:layout_marginTop="75dp"
             android:layout_width="70dp"
             android:src="@drawable/default_icon" />
-
         <TextView
             android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
@@ -37,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:background="#E3E3E3"/>
     <RelativeLayout
-        android:id="@+id/rl_cousre_history"
+        android:id="@+id/rl_course_history"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#F7F8F8"
