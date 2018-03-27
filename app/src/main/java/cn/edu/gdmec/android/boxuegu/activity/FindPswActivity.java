@@ -40,7 +40,7 @@ public class FindPswActivity extends AppCompatActivity {
     private void init() {
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_back = (TextView) findViewById(R.id.tv_back);
-        et_validate_name = (EditText) findViewById(R.id.et_validata_name);
+        et_validate_name = (EditText) findViewById(R.id.et_validate_name);
         btn_validate = (Button) findViewById(R.id.btn_validate);
         tv_reset_psw = (TextView) findViewById(R.id.tv_reset_psw);
         et_user_name = (EditText) findViewById(R.id.et_user_name);

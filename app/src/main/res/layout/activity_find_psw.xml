@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical">
+    <include layout="@layout/main_title_bar"/>
     <TextView
         android:id="@+id/tv_user_name"
         android:layout_width="fill_parent"
@@ -39,7 +40,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"/>
     <EditText
-        android:id="@+id/et_validata_name"
+        android:id="@+id/et_validate_name"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:layout_marginLeft="35dp"
