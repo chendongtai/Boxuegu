@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_back = (TextView) findViewById(R.id.tv_back);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("博学谷课程");
-        rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
+        rl_title_bar = (RelativeLayout) findViewById(R.id.rl_title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_back.setVisibility(View.GONE);
         initBodyLayout();

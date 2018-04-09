@@ -1,11 +1,13 @@
 package cn.edu.gdmec.android.boxuegu.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +24,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_nickName,tv_signature,tv_user_name,tv_sex;
     private RelativeLayout rl_nickName,rl_sex,rl_signature,rl_title_bar;
     private  String spUserName;
+    private static final int CHANGE_NICKNAME = 1;//修改昵称的自定义常量
+    private static final int CHANGE_SIGNATURE = 2;//修改签名的自定义常量
+    private String new_info;//最新数据
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_back = (TextView) findViewById(R.id.tv_back);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("个人资料");
-      //  rl_title_bar = (RelativeLayout) findViewById(R.id.rl_title_bar);
+        rl_title_bar = (RelativeLayout) findViewById(R.id.rl_title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         rl_nickName = (RelativeLayout) findViewById(R.id.rl_nickName);
         rl_sex = (RelativeLayout) findViewById(R.id.rl_sex);
@@ -86,12 +91,26 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 this.finish();
                 break;
             case R.id.rl_nickName:      //昵称的点击事件
+                String name = tv_nickName.getText().toString(); //获取昵称控件上的数据
+                 Bundle bdName = new Bundle();      //传递界面上的昵称数据
+                 bdName.putString("content",name);
+                 bdName.putString("title","昵称");
+                 bdName.putInt("flag",1);           //flag传递1时表示是修改昵称
+                 enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_NICKNAME,bdName);
+                 //跳转到个人资料修改界面
                 break;
             case R.id.rl_sex:           //性别的点击事件
                 String sex=tv_sex.getText().toString();
                 sexDialog(sex);
                 break;
             case R.id.rl_signature:     //签名的点击事件
+                String signature = tv_signature.getText().toString();  //获取签名控件上的数据
+                Bundle bdSignature = new Bundle();                   //传递界面上的签名数据
+                bdSignature.putString("content",signature);
+                bdSignature.putString("title","签名");
+                bdSignature.putInt("flag",2);                //flag传递2时表示是修改签名
+                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_SIGNATURE,bdSignature);
+                   //跳转到个人资料修改界面
                 break;
                 default:
                     break;
@@ -122,5 +141,37 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private void setSex(String sex){
         tv_sex.setText(sex);
         DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("sex",sex,spUserName);
+    }
+    public void enterActivityForResult(Class<?> to,int requestCode, Bundle b){
+        Intent i = new Intent(this,to);
+        i.putExtras(b);
+        startActivityForResult(i,requestCode);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case CHANGE_NICKNAME:  //个人资料修改界面回传过来的昵称数据
+                if (data!=null){
+                new_info = data.getStringExtra("nickName");
+                if (TextUtils.isEmpty(new_info)){
+                    return;
+                }
+                tv_nickName.setText(new_info);
+                //更新数据库中的昵称字段
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("nickName",new_info,spUserName);
+            }
+            break;
+            case CHANGE_SIGNATURE://个人资料修改界面回传过来的签名数据
+                if(data!=null){
+                new_info = data.getStringExtra("signature");
+                if (TextUtils.isEmpty(new_info)){
+                   return;
+                     }
+                     tv_signature.setText(new_info);
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("signature",new_info,spUserName);
+                    break;
+                }
+        }
     }
 }
