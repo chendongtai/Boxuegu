@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.boxuegu.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import java.util.List;
+
+import cn.edu.gdmec.android.boxuegu.activity.ExercisesDetailActivity;
 import cn.edu.gdmec.android.boxuegu.bean.ExercisesBean;
 import cn.edu.gdmec.android.boxuegu.R;
 
@@ -60,11 +63,20 @@ public class ExercisesAdapter extends BaseAdapter {
                 vh.content.setText(bean.content);
                 vh.order.setBackgroundResource(bean.background);
             }
+            //每个Item的点击事件
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (bean == null)
-                        return;//跳转到习题详情页面
+                    if (bean == null){
+                        return;
+                    }
+                    //跳转到习题详情页面
+                    Intent intent = new Intent(mContext, ExercisesDetailActivity.class);
+                    //把章节Id传递到习题详情页面
+                    intent.putExtra("id",bean.id);
+                    //把标题传递到习题详情界面
+                    intent.putExtra("title",bean.title);
+                    mContext.startActivity(intent);
                 }
             });
         return convertView;

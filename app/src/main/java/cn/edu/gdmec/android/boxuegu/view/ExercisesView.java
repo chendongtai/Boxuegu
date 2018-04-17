@@ -21,7 +21,7 @@ public class ExercisesView {
     private LayoutInflater mInflater;
     private View mCurrentView;
     public ExercisesView(Activity context) {
-    mContext = context;
+         mContext = context;
     //为之后将Layout转化为view时用
         mInflater = LayoutInflater.from(mContext);
     }
@@ -98,6 +98,7 @@ public class ExercisesView {
             ebl.add(bean);
         }
     }
+    //获取当前在导航栏上方显示对应的View
     public View getView(){
         if (mCurrentView == null){
             createView();

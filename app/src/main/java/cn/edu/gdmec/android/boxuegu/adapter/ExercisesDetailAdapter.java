@@ -22,8 +22,8 @@ public class ExercisesDetailAdapter extends BaseAdapter{
     private List<ExercisesBean> ebl;
     private OnSelectListener onSelectListener;
 
-    public ExercisesDetailAdapter(Context context,OnSelectListener onSelectListener) {
-        this.mContext = mContext;
+    public ExercisesDetailAdapter(Context context, OnSelectListener onSelectListener) {
+        this.mContext = context;
         this.onSelectListener = onSelectListener;
     }
     public void setData(List<ExercisesBean> ebl){
@@ -46,7 +46,6 @@ public class ExercisesDetailAdapter extends BaseAdapter{
     }
 //记录点击的位置
     private ArrayList<String> selectedPosition = new ArrayList<String>();
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder vh;
@@ -88,23 +87,23 @@ public class ExercisesDetailAdapter extends BaseAdapter{
                     if (bean.answer == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
-                        vh.iv_b.setImageResource(R.drawable.exercises_c);
-                        vh.iv_b.setImageResource(R.drawable.exercises_d);
+                        vh.iv_c.setImageResource(R.drawable.exercises_c);
+                        vh.iv_d.setImageResource(R.drawable.exercises_d);
                     }else if (bean.answer == 2){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
-                        vh.iv_b.setImageResource(R.drawable.exercises_c);
-                        vh.iv_b.setImageResource(R.drawable.exercises_d);
+                        vh.iv_c.setImageResource(R.drawable.exercises_c);
+                        vh.iv_d.setImageResource(R.drawable.exercises_d);
                     }else if (bean.answer == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
-                        vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
-                        vh.iv_b.setImageResource(R.drawable.exercises_d);
+                        vh.iv_c.setImageResource(R.drawable.exercises_right_icon);
+                        vh.iv_d.setImageResource(R.drawable.exercises_d);
                     }else if (bean.answer == 3){
                         vh.iv_a.setImageResource(R.drawable.exercises_a);
                         vh.iv_b.setImageResource(R.drawable.exercises_b);
-                        vh.iv_b.setImageResource(R.drawable.exercises_c);
-                        vh.iv_b.setImageResource(R.drawable.exercises_right_icon);
+                        vh.iv_c.setImageResource(R.drawable.exercises_c);
+                        vh.iv_d.setImageResource(R.drawable.exercises_right_icon);
                     }
                     break;
                 case 1://用户所选项A是错误的
@@ -155,7 +154,7 @@ public class ExercisesDetailAdapter extends BaseAdapter{
                         vh.iv_d.setImageResource(R.drawable.exercises_right_icon);
                     }
                     break;
-                case 4://用户所选项C是错误的
+                case 4://用户所选项D是错误的
                     vh.iv_d.setImageResource(R.drawable.exercises_error_icon);
                     if (bean.answer == 1){
                         vh.iv_a.setImageResource(R.drawable.exercises_right_icon);
@@ -239,10 +238,4 @@ public class ExercisesDetailAdapter extends BaseAdapter{
         void onSelectC(int position,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d);
         void onSelectD(int position,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d);
     }
-    //设置A.B.C.D选项是否可被点击
-    public static void setABCDEnable(boolean value,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d)
-        iv_a.setEnabled(value);
-        iv_b.setEnabled(value);
-        iv_c.setEnabled(value);
-        iv_d.setEnabled(value);
 }
