@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -112,7 +113,6 @@ public class ChangeUserInfoActivity extends AppCompatActivity{
     private void contentListener(){
         et_content.addTextChangedListener(new TextWatcher() {
 
-
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -166,6 +166,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity{
                         break;
                     case 3:         //签名 最多是16个文字，超过16个需要截取掉多余的文字
                         if (len > 12){
+                        et_content.setInputType(InputType.TYPE_CLASS_NUMBER);
                             int selEndIndex = Selection.getSelectionEnd(editable);
                             String str = editable.toString();
                             //截取新字符串
