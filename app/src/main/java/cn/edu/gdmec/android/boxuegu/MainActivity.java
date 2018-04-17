@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.edu.gdmec.android.boxuegu.view.ExercisesView;
 import cn.edu.gdmec.android.boxuegu.view.MyInfoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_main_title;
     private RelativeLayout rl_title_bar;
     private MyInfoView mMyInfoView;
+    private ExercisesView mExercisesView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +184,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1:
                 //习题界面
+                if (mExercisesView == null){
+                    mExercisesView = new ExercisesView(this);
+                    mBodyLayout.addView(mExercisesView.getView());
+                }else{
+                    mExercisesView.getView();
+                }
+                mExercisesView.showView();
                 break;
             case 2:
                 //我的界面

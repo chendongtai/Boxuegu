@@ -7,7 +7,7 @@ import android.os.Build;
 
 
 public class SQLiteHelper extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     public static String DB_NAME="bxg.db";
     public static final String U_USERINFO = "userinfo";
     public SQLiteHelper(Context context) {
@@ -22,7 +22,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 +"userName VARCHAR, "   // 用户名
                 +"nickName VARCHAR, "   //昵称
                 +"sex VARCHAR, "        //性别
-                +"signature VARCHAR"    //签名
+                +"signature VARCHAR,"    //签名
+                +"qq VARCHAR"
                 +")");
     }//当数据库版本号增加时才会调用下面的方法
 
